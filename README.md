@@ -1,4 +1,4 @@
-# NCCBUDDY
+# KNICKS LINK
 Social Media Clone Developed In Django
 This project is basic social media features.
 
@@ -58,9 +58,4 @@ python manage.py runserver
 
 ## Authors
 
-* **Uttam Velani**
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-### REDUCE PLASTIC USE AND SAVE ENVIRONMENT
+* **MBO ALAIN GERARD**
