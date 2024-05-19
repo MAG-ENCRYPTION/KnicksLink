@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404,redirect
 from django.db.models import Q
@@ -12,10 +13,13 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from .models import Post, Comment, PostReport, Notification
+from .models import Post, PostApplication, Comment, PostReport, Notification
 from users.models import UserReport
 from users.models import Profile
 from .forms import CommentForm, ReportPostForm, PostForm
+
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit, Layout, Div, Field
 
 
 @login_required
@@ -254,3 +258,37 @@ def notifications_unread_count_view(request,username=None):
             'count':count
         }
         return JsonResponse(data)
+    
+
+@login_required
+class PostApplicationForm(forms.ModelForm):
+    class Meta:
+        model = PostApplication
+        fields = ['cv', 'cover_letter']
+
+    def _init_(self, *args, **kwargs):
+        self.post = kwargs.pop('post')
+        super(PostApplicationForm, self)._init_(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Postuler', css_class='btn-primary'))
+
+    def save(self, commit=True):
+        instance = super(PostApplicationForm, self).save(commit=False)
+        instance.post = self.post
+        instance.applicant = self.request.user
+        if commit:
+            instance.save()
+        return instance
+
+def post_detail(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    if request.method == 'POST':
+        form = PostApplicationForm(request.POST, request.FILES, post=post)
+        if form.is_valid():
+            form.save()
+            print('Successfully applied')
+            redirect('home')
+    else:
+        form = PostApplicationForm(post=post)
+    return render(request, 'post_detail.html', {'post': post, 'form': form})
