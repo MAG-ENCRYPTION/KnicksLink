@@ -38,7 +38,7 @@ Django : pip install django
 2) Set Up Virtual Environment and activate it
 3) Install dependencies
 ```
-pip install -r requirements.txt
+pip install -r file.txt
 ```
 4) Change database settings in case you want to use PostgreSQL or MySQL
 5) Also you can add AWS and Email settings in case you required(They are only for production):
@@ -59,3 +59,4 @@ python manage.py runserver
 ## Authors
 
 * **MBO ALAIN GERARD**
+* **NZIELEU NATHAN**

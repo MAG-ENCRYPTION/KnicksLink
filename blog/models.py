@@ -53,6 +53,14 @@ class Post(models.Model):
         return url
         
 
+class PostApplication(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='applications')
+    applicant = models.ForeignKey(User, on_delete=models.CASCADE)
+    cv = models.FileField(upload_to='post_applications/cvs', null=True, blank=True)
+    cover_letter = models.FileField(upload_to='post_applications/cover_letters', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
 REASON = [
     
     ('SPAM','SPAM'),

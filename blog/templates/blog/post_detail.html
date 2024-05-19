@@ -147,6 +147,26 @@
 
 {% endblock content %}
 
+
+{% block content %}
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.content }}</p>
+  <p>Publié par {{ post.author }} le {{ post.date_posted }}</p>
+  
+  {% if request.user.is_authenticated %}
+    <h2>Postuler pour ce poste</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <label for="file-field">Choisir un fichier :</label>
+      <input type="file" id="file-field" name="file">
+      <button type="submit" class="btn btn-primary">Postuler</button>
+    </form>
+  {% else %}
+    <p>Vous devez être connecté pour postuler à ce poste.</p>
+  {% endif %}
+{% endblock %}
+
 {% block script %}
 {% if user in post.likes.all %}
 <script>
