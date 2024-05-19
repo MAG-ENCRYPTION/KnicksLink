@@ -281,14 +281,14 @@ class PostApplicationForm(forms.ModelForm):
             instance.save()
         return instance
 
-def post_detail(request, slug):
-    post = get_object_or_404(Post, slug=slug)
-    if request.method == 'POST':
-        form = PostApplicationForm(request.POST, request.FILES, post=post)
-        if form.is_valid():
-            form.save()
-            print('Successfully applied')
-            redirect('home')
-    else:
-        form = PostApplicationForm(post=post)
-    return render(request, 'post_detail.html', {'post': post, 'form': form})
+    def post_detail(request, slug):
+        post = get_object_or_404(Post, slug=slug)
+        if request.method == 'POST':
+            form = PostApplicationForm(request.POST, request.FILES, post=post)
+            if form.is_valid():
+                form.save()
+                print('Successfully applied')
+                redirect('home')
+        else:
+            form = PostApplicationForm(post=post)
+        return render(request, 'post_detail.html', {'post': post, 'form': form})
