@@ -145,10 +145,7 @@
 </div>
 
 
-{% endblock content %}
 
-
-{% block content %}
   <h1>{{ post.title }}</h1>
   <p>{{ post.content }}</p>
   <p>Publié par {{ post.author }} le {{ post.date_posted }}</p>
@@ -165,7 +162,7 @@
   {% else %}
     <p>Vous devez être connecté pour postuler à ce poste.</p>
   {% endif %}
-{% endblock %}
+{% endblock content %}
 
 {% block script %}
 {% if user in post.likes.all %}
@@ -262,4 +259,4 @@ $('#report-form').on('submit',function(event){
     })
   })
 </script>
-{% endblock %}
+{% endblock script %}
