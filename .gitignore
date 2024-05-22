@@ -1,5 +1,4 @@
 *.pyc
-media/
 backup/
 env/
 *.sqlite3
