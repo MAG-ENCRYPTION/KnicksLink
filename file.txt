@@ -2,6 +2,8 @@ asgiref
 boto3
 botocore
 channels
+daphne
+crispy-bootstrap4
 Django
 django-appconf
 django-crispy-forms
