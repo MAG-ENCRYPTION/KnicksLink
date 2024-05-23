@@ -7,6 +7,7 @@ SECRET_KEY = '6+_(6czw@+gbm$5q@j6u#ubk^)19o&0+3wi!2u(%x^^y^!d(j#'
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '*']
+CSRF_TRUSTED_ORIGINS = ['https://knickslink.onrender.com','https://*.onrender.com']
 
 INSTALLED_APPS = [
 
@@ -119,6 +120,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'blog:home'
 LOGIN_URL = 'login'
 
-ADMIN_SITE_HEADER = "BUDDIES"
+ADMIN_SITE_HEADER = "KNICKS"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -1,17 +1,79 @@
 {% load static %}
 
-<section>
-	<div class="">
-	  <div class="">
-	    Welcome <b>{{user.username}}</b>
-	  </div>
-	  <div class="card-body">
-	    <p class="card-text">Posts of your buddies will appear on this page.</p>
-	    <p class="card-text">To add or update your personal information <a href="{% url 'profile-update' %}">click here</a>.</p>
-	    <p>You can also search for your buddies and posts at <a href="{% url 'blog:search' %}">search</a> page.</p>
-	    <p>To add your first post click the button below.</p>
-	    <a href="{% url 'blog:post-create' %}" class="btn btn-primary">Add Post</a>
-	  </div>
-	</div>
-	<br>
+<section class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-6">
+            <div class="card shadow-lg rounded-3 bg-warning position-relative overflow-hidden">
+                <img src="{% static 'blog/img/Logo_Community.png' %}" alt="Welcome" class="img-fluid animate__animated animate__fadeInUp">
+                <div class="card-body py-5 position-relative">
+                    <h1 class="text-white text-center mb-4" style="font-size: 3rem; font-family: 'Georgia', serif;">
+                        Welcome <b>{{user.username.upper}}</b>
+                    </h1>
+                    <p class="text-white text-center" style="font-size: 1.2rem;">
+                        We're so glad to have you here!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10 col-xl-6">
+            <div class="card shadow-lg rounded-3 position-relative overflow-hidden">
+                <img src="{% static 'blog/img/Logo_Community.png' %}" alt="Job and Internship" class="img-fluid animate__animated animate__fadeInUp">
+                <div class="card-header bg-warning text-white text-center py-3 position-relative">
+                    <h4 class="mb-0">JOB AND INTERNSHIP</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-center">
+                        Haven't posted a job or internship application yet? Do it now and click on the icon below :
+                    </p>
+                    <div class="d-flex justify-content-center mt-4">
+                        <a href="{% url 'blog:post-create' %}" class="btn btn-success rounded-pill px-4 py-2 shadow-lg animate__animated animate__pulse animate__infinite">
+                            <i class="fas fa-briefcase fa-3x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
+<section class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-6">
+            <div class="card shadow-lg rounded-3 position-relative overflow-hidden">
+                <img src="{% static 'blog/img/update-profile.png' %}" alt="Update Profile" class="img-fluid animate__animated animate__fadeInUp">
+                <div class="card-header bg-warning text-white text-center py-3 position-relative">
+                    <h4 class="mb-0">Update your profile</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-center">
+                        To add or update your personal information, just click on the button below:
+                    </p>
+                    <div class="d-flex justify-content-center mt-4">
+                        <a href="{% url 'profile-update' %}" class="btn btn-success rounded-pill px-4 py-2 shadow-lg animate__animated animate__pulse animate__infinite">
+                            <i class="fas fa-user-edit fa-3x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10 col-xl-6">
+            <div class="card shadow-lg rounded-3 position-relative overflow-hidden">
+                <img src="{% static 'blog/img/search-job.png' %}" alt="Search" class="img-fluid animate__animated animate__fadeInUp">
+                <div class="card-header bg-warning text-white text-center py-3 position-relative">
+                    <h4 class="mb-0">Search all Job, internship and other users</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-center">
+                        Search all Job, internship and other users in this site you can just click on :
+                    </p>
+                    <div class="d-flex justify-content-center mt-4">
+                        <a href="{% url 'blog:search' %}" class="btn btn-success rounded-pill px-4 py-2 shadow-lg animate__animated animate__pulse animate__infinite">
+                            <i class="fas fa-search fa-3x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

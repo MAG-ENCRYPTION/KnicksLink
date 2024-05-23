@@ -1,58 +1,121 @@
 {% extends "blog/base.html" %}
-{% block title %}<title> @{{request.user.username}}'s notifications- nccbuddy.com</title>{% endblock %}
+
+{% block title %}
+  <title>{{ request.user.username }}'s Notifications</title>
+{% endblock %}
 
 {% block content %}
-      <div class="content-section overflow-auto infinite-container">
-        <h1>Notifications</h1>
-        {% for notification in notifications %}
-          {% if notification.read %}
-          <p class="notification-list-items-read infinite-item">
-          {%else%}
-          <p class="notification-list-items-unread infinite-item">
-          {% endif %}
-
-            <a href="{% url 'profile' notification.sender.username %}" style="text-decoration: blink;">{{notification.sender.username}}</a> {{notification.action}} 
-            {% if notification.post %}
-             <span class="post-title-notify"><a href="{% url 'blog:post-detail' notification.post.slug %}">"{{notification.post.title}}".</a></span>
-            {% endif %}
-             <br><small>({{notification.timestamp|date:"D, d M, g:i a"}})</small>
-          </p>
-        {% empty %}
-        <p class="notification-list-items-unread">No notifications yet! Welcome to nccbuddy.com.</p>
-        {% endfor %}
-      </div>
-
-      <div class="loading" style="display: none;">
-        Loading...
-      </div>
-      {% if notifications.has_next %}
-        <a class="infinite-more-link" style="display: none;" href="?page={{ notifications.next_page_number }}">More</a>
+  <div class="content-section overflow-auto infinite-container">
+    <h1>Notifications</h1>
+    {% for notification in notifications %}
+      {% if notification.read %}
+        <div class="notification-list-items-read infinite-item">
+      {% else %}
+        <div class="notification-list-items-unread infinite-item">
       {% endif %}
-      
-{% endblock content %}
-{% block script %}
-        <script>
-        $( document ).ready(function(){
-            $.ajax({
-                url: "{% url 'blog:notifications-update' request.user.username %}",
-                type: 'get',
-                success: function(data){
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                  }
-            });
-        });
-        </script>
-        <script>
-          var infinite = new Waypoint.Infinite({
-            element: $('.infinite-container')[0],
-            onBeforePageLoad: function () {
-              $('.loading').show();
-            },
-            onAfterPageLoad: function ($items) {
-              $('.loading').hide();
-            }
-          });
-      </script>
+          <div class="notification-content">
+            <div class="notification-sender">
+              <a href="{% url 'profile' notification.sender.username %}" style="text-decoration: blink;">
+                {{ notification.sender.username.upper }}
+              </a>
+            </div>
+            <div class="notification-action">
+              {{ notification.action }}
+              {% if notification.post %}
+                <span class="post-title-notify">
+                  <a href="{% url 'blog:post-detail' notification.post.slug %}">"{{ notification.post.title }}"</a>
+                </span>
+              {% endif %}
+            </div>
+            <div class="notification-timestamp">
+              <small>({{ notification.timestamp|date:"D, d M, g:i a" }})</small>
+            </div>
+          </div>
+        </div>
+        <hr class="notification-separator">
+    {% empty %}
+      <div class="notification-list-items-unread">No notifications yet! Welcome to Knicks Link</div>
+    {% endfor %}
+  </div>
 
-{% endblock %}
+  <div class="loading" style="display: none;">
+    Loading...
+  </div>
+  {% if notifications.has_next %}
+    <a class="infinite-more-link" style="display: none;" href="?page={{ notifications.next_page_number }}">More</a>
+  {% endif %}
+{% endblock content %}
+
+{% block style %}
+  <style>
+    .notification-list-items-read {
+      background-color: #f6f6f6;
+      border-left: 6px solid #28a745;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .notification-list-items-unread {
+      background-color: #fef0e5;
+      border-left: 6px solid #ff6d00;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .notification-content {
+      color: #333333;
+      font-family: Arial, sans-serif;
+    }
+
+    .notification-sender a {
+      color: #4caf50;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .notification-action {
+      margin-top: 5px;
+    }
+
+    .post-title-notify a {
+      color: #ff6d00;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .notification-timestamp {
+      margin-top: 5px;
+      color: #888888;
+    }
+
+    .notification-separator {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 10px 0;
+    }
+  </style>
+{% endblock style %}
+
+{% block script %}
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: "{% url 'blog:notifications-update' request.user.username %}",
+        type: 'get',
+        success: function(data) {},
+        error: function(xhr, ajaxOptions, thrownError) {}
+      });
+    });
+  </script>
+  <script>
+    var infinite = new Waypoint.Infinite({
+      element: $('.infinite-container')[0],
+      onBeforePageLoad: function() {
+        $('.loading').show();
+      },
+      onAfterPageLoad: function($items) {
+        $('.loading').hide();
+      }
+    });
+  </script>
+{% endblock script %}

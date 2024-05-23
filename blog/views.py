@@ -61,7 +61,7 @@ def post_detail_view(request,slug=None):
         comments = Comment.objects.filter(post=post).order_by('-id')
         context = {'post':post,'form':form,'comments':comments,'report_form':report_form}
 
-    return render(request,'blog/post_detail.html',context)
+    return render(request, 'blog/post_detail.html', context)
 
     
 @login_required

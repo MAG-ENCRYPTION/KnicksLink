@@ -3,8 +3,13 @@
 {% block content %}
 <div class="content-section">
     <div style="display: flex; align-items: center;">
-        <img src="{{ chat_user.profile.image_thumbnail_user.url }}" class="rounded-circle chat-image" alt="Profile">    
-        <p><b>{{ chat_user.username }}</b></p>
+        {% if chat_user.profile.image_thumbnail_user.url == "/media/" %}
+        <img src="{% static 'blog/img/userProfil.png' %}" class="rounded-circle chat-image" alt="Profile">
+        {% else %}
+        <img src="{{ chat_user.profile.image_thumbnail_user.url }}" class="rounded-circle chat-image" alt="Profile">
+        {% endif %}
+        <p><b>{{ chat_user.username.upper }}</b></p>
+
     </div>
     <hr>
     <div id="messages">
@@ -15,21 +20,27 @@
                     {{ message.message }}<br>
                     <small class="text-muted">{{ message.timestamp }}</small>
                 </div>
-                <img src="{{ message.sender.profile.image_thumbnail_user.url }}" class="rounded-circle chat-image" alt="Profile">
+                {% if message.sender.profile.image_thumbnail_user %}
+                    <img src="{{ message.sender.profile.image_thumbnail_user.url }}" class="rounded-circle chat-image" alt="Profile">
+                {% else %}
+                    <img src="{% static 'blog/img/userProfil.png' %}" class="rounded-circle chat-image" alt="Default Profile">
+                {% endif %}
             </div>
         {% else %}
             <div class="d-flex justify-content-start">
-                <!-- Profile image on the left for the other user -->
-                <img src="{{ message.sender.profile.image_thumbnail_user.url }}" class="rounded-circle chat-image" alt="Profile">
+                {% if message.sender.profile.image_thumbnail_user %}
+                    <img src="{{ message.sender.profile.image_thumbnail_user.url }}" class="rounded-circle chat-image" alt="Profile">
+                {% else %}
+                    <img src="{% static 'blog/img/userProfil.png' %}" class="rounded-circle chat-image" alt="Default Profile">
+                {% endif %}
                 <div class="alert alert-primary" role="alert">
                     {{ message.message }}<br>
                     <small class="text-muted">{{ message.timestamp }}</small>
                 </div>
             </div>
-            
         {% endif %}
     {% endfor %}
-</div>
+    </div>
     <form id="chat-form">
         <input class="message-input form-control" placeholder="Type your message" type="text" id="chat-message-input" name="message">
     </form>
@@ -45,7 +56,7 @@
         const data = JSON.parse(e.data);
         console.log('Data:', data);
         
-        if (data.type == 'chat'){
+        if (data.type === 'chat'){
             let messages = document.getElementById("messages")
             let messageHTML = '';
         if (data.username === '{{ request.user.username }}') {
