@@ -1,5 +1,6 @@
 asgiref
 boto3
+bootstrap4
 botocore
 channels
 daphne
