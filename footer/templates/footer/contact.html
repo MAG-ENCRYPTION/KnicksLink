@@ -1,27 +1,63 @@
 {% extends 'blog/base.html' %}
-{% load crispy_forms_tags %} 
- {% block title %}
-   <title>Contact - nccbuddy.com</title> 
- {% endblock %}
- {% block content %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block title %}
+   <title>Contact - KnicksLink</title>
+{% endblock %}
+{% block content %}
+<style>
+    .content-section {
+        background-color: #f6f6f6;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
 
+    .content-section legend {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .content-section p {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-outline-info {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+    }
+
+    .btn-outline-info:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+</style>
 <div class="content-section">
-
-	{% if message %}
-		<p>{{message}}</p>
-	{% else %}
-		<form method="POST">
-	        {% csrf_token %}
-	        <fieldset class="form-group">
-	            <legend class="border-bottom mb-4">Contact</legend>
-	            <p>Message, Quries and Feedbacks are welcome.</p>
-	            {{ form|crispy }}
-	        </fieldset>
-	        <div class="form-group">
-	            <button class="btn btn-outline-info btn-sm" type="submit">Send</button>
-	        </div>
-	    </form>
-	{% endif %}
+    <img src="{% static 'blog/img/Logo_Community_1.png' %}" alt="KnicksLink Logo" class="logo-img">
+    {% if message %}
+        <p>{{ message }}</p>
+    {% else %}
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Contact Us</legend>
+            <p>Messages, queries, and feedback are welcome.</p>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Send</button>
+        </div>
+    </form>
+{% endif %}
 </div>
-
 {% endblock content %}

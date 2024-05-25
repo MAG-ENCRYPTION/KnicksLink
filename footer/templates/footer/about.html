@@ -1,13 +1,104 @@
 {% extends "blog/base.html" %}
- {% block title %}
-   <title>About - NCC BUDDIES</title> 
- {% endblock %}
+{% load static %}
+{% block title %}
+   <title>About - KnicksLink</title>
+{% endblock %}
+{% block style %}
+<style>
+    .logo-img {
+        display: block;
+        width: 350px;
+        margin: 0 auto 20px;
+    }
+
+    .content-section {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    p {
+        color: #666;
+        line-height: 1.5;
+    }
+
+    .team-member {
+        margin-bottom: 20px;
+    }
+
+    .team-member-name {
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: opacity 0.3s;
+        display: inline-block;
+    }
+
+    .team-member-name:hover {
+        opacity: 0.7;
+    }
+</style>
+{% endblock style %}
 {% block content %}
 <div class="content-section">
-	<h1>About</h1>
-	<p>The sole aim of <i>nccbuddy.com</i> is to provide a platform to cadets for sharing and getting knowledge.</p>
-	<p>It helps connects NCC cadets and provides a platform where cadets can share their experience, knowledge, memories, and much more.</p>
-	<p>We are committed to building a better NCC community by providing a fast and secure platform.</p>
-	<p>nccbuddy.com is developed in India.</p>
+    <img src="{% static 'blog/img/Logo_Community_1.png' %}" alt="KnicksLink Logo" class="logo-img">
+    <h1>About</h1>
+    <p>The main objective of <i>KnicksLink</i> is to provide a platform for job seekers and employers to connect.</p>
+    <p>KnicksLink facilitates the process of job searching and instant messaging, enabling seamless communication between applicants and potential employers.</p>
+    <p>We are dedicated to creating a robust job-seeking community by offering a fast and secure platform.</p>
+    <p>KnicksLink is developed by the Knicks team.</p> <br><br>
+
+    <h2 style="size: 1.3rem">ABOUT MEMBERS </h2><br><br>
+
+    <div class="team-member">
+        <button class="team-member-name btn btn-info" data-toggle="modal" data-target="#member1-modal">MBO ALAIN GERARD</button>
+        <div id="member1-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="member1-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="member1-modal-label">MBO ALAIN GERARD (KNICKS LEAD)</h5>
+                        <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="color: #000000">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Mbo Alain Gerard is a computer science student at the National Advanced School of Engineering in
+                            Yaoundé (NASEY), Cameroon. He is a junior Python backend developer who wishes to learn new things.</p>
+                        <p>GitHub: <a href="https://github.com/MAG-ENCRYPTION">MAG-ENCRYPTION</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-member">
+        <button class="team-member-name btn btn-info" data-toggle="modal" data-target="#member2-modal">NZIELEU Nathan</button>
+        <div id="member2-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="member2-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="member2-modal-label">NZIELEU Nathan</h5>
+                        <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="color: #000000">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>NZIELEU Nathan is a student in the Department of Mathematics and Physical Sciences at NASEY. He wishes
+                            to join the Computer Engineering program. He is a beginner Python backend developer who desires to learn new things.</p>
+                        <p>GitHub: <a href="https://github.com/Nathech23">Nathech23</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-Kx5oW8E9JY4ZvOxh4WedogMvzGLbLrPbrKqXsH2Ema0y4gL1XylqWZj9n7fjyL3p" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua6UYB7Q5wN5n1R+nxRi/ZXX+5K7j8Jd2z+3qGzOw8DkYLrJ9tOJ5tnn+" crossorigin="anonymous"></script>
 {% endblock content %}

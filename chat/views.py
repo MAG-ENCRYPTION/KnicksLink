@@ -34,9 +34,7 @@ def chat_list(request):
 
 
 def chat(request, username:str):
-    """
-    username: Is other user's username
-    """
+
     chat_user = User.objects.get(username=username)
     room_name = "room_" + str(min(chat_user.id, request.user.id)) \
         + "_" + str(max(chat_user.id, request.user.id))
@@ -55,9 +53,7 @@ def chat(request, username:str):
 
 
 def group_chat(request, room_name):
-    """
-    room_name: Room name for the group chat
-    """
+
     try:
         chat_room = ChatRoom.objects.get(room_name=room_name, is_group_chat=True)
     except ChatRoom.DoesNotExist:

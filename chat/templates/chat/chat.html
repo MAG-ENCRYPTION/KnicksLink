@@ -49,7 +49,7 @@
 <script type="text/javascript">
     const room_name = `{{ room_name }}`
 
-    let url = `ws://${window.location.host}/ws/chat/${room_name}/`;
+    let url = `wss://${window.location.host}/ws/chat/${room_name}/`;
     const chatSocket = new WebSocket(url);
 
     chatSocket.onmessage = function(e) {

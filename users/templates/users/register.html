@@ -1,58 +1,98 @@
- {% extends "blog/base.html" %}
+{% extends "blog/base.html" %}
+{% load static %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
- {% block title %}
-  <title>Sign Up - nccbuddy.com</title>
+{% load crispy_forms_field %}
+{% load crispy_forms_utils %}
+{% block title %}
+  <title>Sign Up - KnicksLink</title>
 {% endblock %}
- {% block content %}
+{% block style %}
+<style>
+    .content-section {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .logo-img {
+        width: 490px;
+        margin-right: 20px;
+    }
+
+    legend {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group:last-child {
+        margin-bottom: 0;
+    }
+
+    .btn-signup {
+        background-color: #007bff;
+        color: #fff;
+        transition: background-color 0.3s;
+    }
+
+    .btn-signup:hover,
+    .btn-signup:focus {
+        background-color: #0056b3;
+    }
+
+    .card {
+        background-color: #f2f2f2;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .card p {
+        color: #333;
+        line-height: 1.5;
+    }
+</style>
+{% endblock style %}
+{% block content %}
+    <br><br><br>
 <div class="content-section">
-    <form method="POST">
+    <img src="{% static 'blog/img/logo.png' %}" alt="KnicksLink Logo" class="logo-img">
+    <form method="POST" class="w-50">
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Create Your Account</legend>
             {{ form|crispy }}
         </fieldset>
         <div class="form-group">
-            <small>By signing up you are agree to follow nccbuddies guidelines (<a href="{% url 'community:guidelines' %}">click here</a> to read)</small>.<br><br>
-            <button class="btn btn-outline-info btn-sm" type="submit">Sign Up</button>
+            <small>By signing up, you agree to KnicksLink's terms and conditions.</small><br><br>
+            <button class="btn btn-primary btn-block btn-signup" type="submit">Sign Up</button>
         </div>
     </form>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-                <b>Already Have An Account? </b>
-                <a class="ml-2" href="{% url 'login' %}">Log In</a>
-        </small>
-    </div>
 </div>
+<div class="card mt-4">
+    <div class="card-body">
+        <p>You can use KnicksLink to:</p>
+        <ul>
+            <li>Search and connect with professionals.</li>
+            <li>Discover job opportunities.</li>
+            <li>Expand your professional network.</li>
+            <li>Already have an account? <a href="{% url 'login' %}">Log in</a> here.</li>
+        </ul>
+    </div>
+</div><br>
 {% endblock content %}
-
-
-{% block script %}
-
-<script type="text/javascript">
-    
-    $("#id_username").change(function(){
-
-        var username = $(this).val();
-
-        $.ajax({
-
-            url:'{% url "validate-username" %}',
-            data: {
-                'username':username
-            },
-            dataType: 'json',
-            success: function(data){
-                if (data.is_taken) {
-                    alert("Username Already Taken!");
-                }
-            }
-
-        })
-
-    });
-
-</script>
-
-
-{% endblock %}

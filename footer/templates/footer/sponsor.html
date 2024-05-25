@@ -1,18 +1,53 @@
 {% extends 'blog/base.html' %}
-{% load crispy_forms_tags %} 
- {% block title %}
-   <title>Sponsor - "nccbuddy.com"</title> 
- {% endblock %}
- {% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+   <title>Sponsor - KnicksLink</title>
+{% endblock %}
+{% block content %}
+<style>
+    .content-section {
+        background-color: #f6f6f6;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin: 0 auto;
+    }
 
+    h1 {
+        color: #007bff;
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    ul {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    ul li {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
 <div class="content-section">
-
-	<h1>Sponsor</h1>
-	<ul>
-		<li>For sponsoring and ads contact us(<a href="{% url 'community:contact' %}">click here</a>).
-		</li>
-	</ul>
-
+    <img src="{% static 'blog/img/Logo_Community_1.png' %}" alt="KnicksLink Logo" class="logo-img">
+    <h1>Sponsors</h1><br><br><br>
+    <ul>
+        <li>For sponsoring and ads, please contact us <a href="{% url 'community:contact' %}">here</a>.</li>
+    </ul>
 </div>
-
 {% endblock content %}

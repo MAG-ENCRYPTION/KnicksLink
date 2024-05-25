@@ -11,7 +11,7 @@ def contact(request):
 		form = ContactForm(request.POST)
 		if form.is_valid():
 			form.save()
-			message = "Your Message/Feedback is sent, manager@nccbuddies will contact you soon. Thank You."
+			message = "Your Message/Feedback is sent, manager will contact you soon. Thank You."
 			return render(request,'footer/contact.html',{'message':message})
 	else:
 		form = ContactForm()

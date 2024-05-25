@@ -38,14 +38,14 @@
 <script type="text/javascript">
     const room_name = `{{ room_name }}`
 
-    let url = `ws://${window.location.host}/ws/chat/${room_name}/`;
+    let url = `wss://${window.location.host}/ws/chat/${room_name}/`;
     const chatSocket = new WebSocket(url);
 
     chatSocket.onmessage = function(e) {
         const data = JSON.parse(e.data);
         console.log('Data:', data);
         
-        if (data.type == 'chat'){
+        if (data.type === 'chat'){
             let messages = document.getElementById("messages")
             let messageHTML = '';
         if (data.username === '{{ request.user.username }}') {

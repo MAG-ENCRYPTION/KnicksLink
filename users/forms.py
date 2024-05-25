@@ -26,7 +26,7 @@ class ProfileUpdateForm(forms.ModelForm):
     camps = TaggableManager(verbose_name=u'Pasta')
     class Meta:
         model = Profile
-        fields = ['image','name','description','wing','camps']
+        fields = ['image','name','description','Category']
 
 
 class ReportUserForm(forms.ModelForm):

@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import logout
 
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm,ReportUserForm
 from blog.models import Post, Notification
@@ -107,7 +108,7 @@ def userFollowUnfollow(request,pk=None):
 
 
 @login_required
-def  change_password(request):
+def change_password(request):
     if request.method == 'POST':
         form  =  PasswordChangeForm(data=request.POST, user=request.user)
 
@@ -121,3 +122,4 @@ def  change_password(request):
         form = PasswordChangeForm(user=request.user)
         args = {'form':form}
         return render(request, 'users/change_password.html',args)
+

@@ -1,28 +1,76 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 {% load crispy_forms_tags %} 
- {% block title %}
-   <title>Contribute - nccbuddy.com</title> 
- {% endblock %}
- {% block content %}
+{% block title %}
+   <title>Contribute - KnicksLink</title>
+{% endblock %}
+{% block style %}
+<style>
+    .content-section {
+        background-color: #f6f6f6;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
 
+    h1 {
+        color: #007bff;
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    ul {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    ul li {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    ol {
+        margin-left: 20px;
+    }
+
+    ol li {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 5px;
+        line-height: 1.5;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock style %}
+{% block content %}
 <div class="content-section">
-
-	<h1>Contribute</h1>
-	<ul>
-		<li>nccbuddy.com is actively looking for contributors 
-			 in various areas mentioned below
-			<ol>
-				<li>Web Developers or Designers</li>
-				<li>Graphics Designers</li>
-				<li>Artists</li>
-				<li>Content Writers</li>
-				<li>In other way you can.</li>
-			</ol>
-		</li>
-		<li>To contribute mail us at nccbuddiesofficial@gmail.com.</li>
-		<li>Please be specific in your mail and attach past work samples also.</li>
-	</ul>
-
+    <img src="{% static 'blog/img/Logo_Community_1.png' %}" alt="KnicksLink Logo" class="logo-img">
+    <h1>Contribute</h1>
+    <ul>
+        <li>KnicksLink is actively looking for contributors in various areas mentioned below:</li>
+        <ol>
+            <li>Web Developers or Designers</li>
+            <li>Graphics Designers</li>
+            <li>Artists</li>
+            <li>Content Writers</li>
+            <li>In any other way you can contribute</li>
+        </ol>
+        <li>To contribute, please email us at <a href="mailto:knicksteam@gmail.com">knicksteam@gmail.com</a>.</li>
+        <li>Please be specific in your email and attach past work samples if available.</li>
+    </ul>
 </div>
-
 {% endblock content %}
